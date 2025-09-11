@@ -1,4 +1,7 @@
 ciudades = ["Bogotá", "Medellín", "Cali"]
+
+# se usara una matriz 3D con datos de temperaturas para 3 ciudades, 4 semanas y 7 días
+# la estructura tiene que ser de esta manera: [ciudad][semana][día] con diccionarios {"day": nombre, "temp": valor}
 temperaturas = [
     [   # Bogotá
         [   # Semana 1
@@ -116,10 +119,24 @@ temperaturas = [
     ]
 ]
 
-for i, ciudad in enumerate(temperaturas):
-    for j, semana in enumerate(ciudad):
-        suma = 0
-        for dia in semana:
-            suma += dia['temp']
-        promedio = suma / 7
-        print(f"El promedio de temperaturas en {ciudades[i]} para la semana {j+1} es: {promedio:.1f}°C")
+# la función para calcular el promedio de temperaturas por ciudad y semana:
+def calcular_promedio_temperaturas(temperaturas, ciudades):
+    """
+    Calcula el promedio de temperaturas para cada ciudad y semana.
+    Parámetros:
+        temperaturas: Matriz 3D con datos de temperaturas [ciudad][semana][día]
+        ciudades: Lista con los nombres de las ciudades
+    Retorna:
+        None. Imprime los promedios por ciudad y semana.
+    """
+    for i, ciudad in enumerate(temperaturas):
+        for j, semana in enumerate(ciudad):
+            suma = 0
+            for dia in semana:
+                suma += dia['temp']
+            promedio = suma / 7  # Divide por 7 días de la semana
+            print(f"El promedio de temperaturas en {ciudades[i]} para la semana {j+1} es: {promedio:.1f}°C")
+
+
+print("Calculando los promedios de temperaturas")
+calcular_promedio_temperaturas(temperaturas, ciudades)
